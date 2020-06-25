@@ -11,6 +11,24 @@ class BytebankContactsApp extends StatelessWidget {
           title: Text('Dashboard'),
           // centerTitle: true,
         ),
+        body: Column(
+          children: <Widget>[
+            Image.asset('assets/images/bytebank_logo.png'),
+            Container(
+              color: Colors.green,
+              height: 120.0,
+              width: 100.0,
+              child: Column(
+                children: <Widget>[
+                  Icon(
+                    Icons.people,
+                  ),
+                  Text('Contacts')
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
