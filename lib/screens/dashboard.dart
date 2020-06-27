@@ -1,3 +1,4 @@
+import 'package:bytebankcontatos/screens/contacts_list.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -18,28 +19,40 @@ class Dashboard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: EdgeInsets.all(8.0),
+            child: Material(
               color: Theme.of(context).primaryColor,
-              height: 100.0,
-              width: 180.0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Icon(
-                    Icons.people,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
-                  Text(
-                    'Contacts',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ContactsList(),
                     ),
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(8.0),
+                  color: Theme.of(context).primaryColor,
+                  height: 100.0,
+                  width: 175.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Icon(
+                        Icons.people,
+                        color: Colors.white,
+                        size: 24.0,
+                      ),
+                      Text(
+                        'Contacts',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
