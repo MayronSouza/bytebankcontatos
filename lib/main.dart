@@ -1,7 +1,11 @@
+import 'package:bytebankcontatos/database/app_database.dart';
 import 'package:bytebankcontatos/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(BytebankContactsApp());
+void main() {
+  runApp(BytebankContactsApp());
+  findAll().then((contacts) => debugPrint(contacts.toString()));
+}
 
 class BytebankContactsApp extends StatelessWidget {
   @override
