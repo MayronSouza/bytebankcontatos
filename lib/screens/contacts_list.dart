@@ -11,8 +11,9 @@ class ContactsList extends StatelessWidget {
       appBar: AppBar(
         title: Text('Contacts'),
       ),
-      body: FutureBuilder(
-        future: findAll(),
+      body: FutureBuilder<List<Contact>>(
+        initialData: List(),
+        future: Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
         builder: (context, snapshot) {
           final List<Contact> contacts = snapshot.data;
           return ListView.builder(
