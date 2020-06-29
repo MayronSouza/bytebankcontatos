@@ -1,3 +1,4 @@
+import 'package:bytebankcontatos/database/app_database.dart';
 import 'package:bytebankcontatos/models/contact.dart';
 import 'package:flutter/material.dart';
 
@@ -54,8 +55,7 @@ class _ContactFormState extends State<ContactForm> {
                         int.tryParse(_accountNumberController.text);
                     final Contact newContact =
                         Contact(0, fullName, accountNumber);
-
-                    Navigator.pop(context, newContact);
+                    save(newContact).then((id) => Navigator.pop(context));
                   },
                 ),
               ),
