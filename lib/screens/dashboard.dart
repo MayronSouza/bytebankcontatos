@@ -23,20 +23,28 @@ class _DashboardState extends State<Dashboard> {
             padding: EdgeInsets.all(8.0),
             child: Image.asset('assets/images/bytebank_logo.png'),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              FeatureItem(
-                'Transfer',
-                Icons.monetization_on,
-                onClick: () => _showContactsList(context),
-              ),
-              FeatureItem(
-                'Transaction Feed',
-                Icons.description,
-                onClick: () => print('Transaction foi clicado'),
-              ),
-            ],
+          Container(
+            height: 120.0,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                FeatureItem(
+                  'Transfer',
+                  Icons.monetization_on,
+                  onClick: () => _showContactsList(context),
+                ),
+                FeatureItem(
+                  'Transaction Feed',
+                  Icons.description,
+                  onClick: () => print('Transaction foi clicado'),
+                ),
+                FeatureItem(
+                  'Transaction Feed',
+                  Icons.description,
+                  onClick: () => print('Transaction foi clicado'),
+                ),
+              ],
+            ),
           ),
         ],
       ),
