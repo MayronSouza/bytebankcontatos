@@ -1,5 +1,6 @@
 import 'package:bytebankcontatos/components/feature_item.dart';
 import 'package:bytebankcontatos/screens/contacts_list.dart';
+import 'package:bytebankcontatos/screens/transactions_list.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -36,12 +37,7 @@ class _DashboardState extends State<Dashboard> {
                 FeatureItem(
                   'Transaction Feed',
                   Icons.description,
-                  onClick: () => print('Transaction foi clicado'),
-                ),
-                FeatureItem(
-                  'Transaction Feed',
-                  Icons.description,
-                  onClick: () => print('Transaction foi clicado'),
+                  onClick: () => _showTransactionsList(context),
                 ),
               ],
             ),
@@ -58,4 +54,10 @@ void _showContactsList(BuildContext context) {
       builder: (context) => ContactsList(),
     ),
   );
+}
+
+void _showTransactionsList(BuildContext context) {
+  Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) => TransactionsList(),
+  ));
 }
