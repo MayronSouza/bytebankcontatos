@@ -1,8 +1,10 @@
+import 'package:bytebankcontatos/http/web_cliente.dart';
 import 'package:bytebankcontatos/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(BytebankContactsApp());
+  findAll();
 }
 
 class BytebankContactsApp extends StatelessWidget {
