@@ -1,11 +1,11 @@
-import 'package:bytebankcontatos/screens/contacts_list.dart';
 import 'package:flutter/material.dart';
 
 class FeatureItem extends StatelessWidget {
   final String name;
   final IconData icon;
+  final Function onClick;
 
-  const FeatureItem(this.name, this.icon);
+  const FeatureItem(this.name, this.icon, {@required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +14,7 @@ class FeatureItem extends StatelessWidget {
       child: Material(
         color: Theme.of(context).primaryColor,
         child: InkWell(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => ContactsList(),
-              ),
-            );
-          },
+          onTap: () => onClick(),
           child: Container(
             padding: EdgeInsets.all(8.0),
             color: Theme.of(context).primaryColor,
