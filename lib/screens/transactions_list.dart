@@ -1,3 +1,4 @@
+import 'package:bytebankcontatos/components/centered_message.dart';
 import 'package:bytebankcontatos/components/progress.dart';
 import 'package:bytebankcontatos/http/web_cliente.dart';
 import 'package:bytebankcontatos/models/transaction.dart';
@@ -24,34 +25,43 @@ class TransactionsList extends StatelessWidget {
                 break;
               case ConnectionState.done:
                 final List<Transaction> transactions = snapshot.data;
-                return ListView.builder(
-                  itemCount: transactions.length,
-                  itemBuilder: (context, index) {
-                    final Transaction transaction = transactions[index];
-                    return Card(
-                      child: ListTile(
-                        leading: Icon(Icons.monetization_on),
-                        title: Text(
-                          transaction.value.toString(),
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
+                // Observa se o snapshot tem conteúdo
+                if (snapshot.hasData) {
+                  // Observa se a transação está vazia
+                  if (transactions.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: transactions.length,
+                      itemBuilder: (context, index) {
+                        final Transaction transaction = transactions[index];
+                        return Card(
+                          child: ListTile(
+                            leading: Icon(Icons.monetization_on),
+                            title: Text(
+                              transaction.value.toString(),
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: Text(
+                              transaction.contact.accountNumber.toString(),
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
                           ),
-                        ),
-                        subtitle: Text(
-                          transaction.contact.accountNumber.toString(),
-                          style: TextStyle(
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ),
+                        );
+                      },
                     );
-                  },
+                  }
+                }
+                return CenteredMessage(
+                  'No transaction found',
+                  icon: Icons.warning,
                 );
                 break;
             }
-
-            return Text('Unknown error');
+            return CenteredMessage('Unknown error');
           },
         ));
   }
