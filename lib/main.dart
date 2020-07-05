@@ -1,14 +1,7 @@
-import 'package:bytebankcontatos/http/web_cliente.dart';
-import 'package:bytebankcontatos/models/contact.dart';
-import 'package:bytebankcontatos/models/transaction.dart';
 import 'package:bytebankcontatos/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(BytebankContactsApp());
-  save(Transaction(200.0, Contact(0, 'João Vitor', 3006)))
-      .then((transaction) => print(transaction));
-}
+void main() => runApp(BytebankContactsApp());
 
 class BytebankContactsApp extends StatelessWidget {
   @override

@@ -3,6 +3,7 @@ import 'package:bytebankcontatos/components/progress.dart';
 import 'package:bytebankcontatos/database/dao/contactDao.dart';
 import 'package:bytebankcontatos/models/contact.dart';
 import 'package:bytebankcontatos/screens/contact_form.dart';
+import 'package:bytebankcontatos/screens/transaction_form.dart';
 import 'package:flutter/material.dart';
 
 class ContactsList extends StatefulWidget {
@@ -35,7 +36,16 @@ class _ContactsListState extends State<ContactsList> {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final Contact contact = contacts[index];
-                  return ContactItem(contact);
+                  return ContactItem(
+                    contact,
+                    onClick: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => TransactionForm(contact),
+                        ),
+                      );
+                    },
+                  );
                 },
                 itemCount: contacts.length,
               );
