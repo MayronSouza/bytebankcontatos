@@ -15,7 +15,7 @@ class TransactionWebClient {
         .toList();
   }
 
-  Future<Transaction> save(Transaction transaction) async {
+  Future<Transaction> save(Transaction transaction, String password) async {
     // Transforma o Map em uma String JSON
     final String transactionJson = jsonEncode(transaction.toJson());
 
@@ -23,7 +23,7 @@ class TransactionWebClient {
     final http.Response response = await client.post(baseUrl,
         headers: {
           'Content-type': 'application/json',
-          'password': '1000',
+          'password': password,
         },
         body: transactionJson);
 
