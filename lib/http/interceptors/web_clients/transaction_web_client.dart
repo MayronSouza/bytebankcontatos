@@ -15,11 +15,6 @@ class TransactionWebClient {
     return transactions;
   }
 
-<<<<<<< HEAD
-  // Cria uma nova transação
-=======
-// Cria uma nova transação
->>>>>>> 4555351c4df59b685d9079e16907134b7dec6e02
   Future<Transaction> save(Transaction transaction) async {
     // Transforma a transação em um Map
     final Map<String, dynamic> transactionMap = _toMap(transaction);
