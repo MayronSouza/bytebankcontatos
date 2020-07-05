@@ -1,3 +1,4 @@
+import 'package:bytebankcontatos/components/transaction_auth_dialog.dart';
 import 'package:bytebankcontatos/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class BytebankContactsApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: Dashboard(),
+      home: TransactionAuthDialog(),
     );
   }
 }
