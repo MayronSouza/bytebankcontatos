@@ -24,15 +24,16 @@ class LoggingInterceptor implements InterceptorContract {
   }
 }
 
+final http.Client client = HttpClientWithInterceptor.build(
+  interceptors: [LoggingInterceptor()],
+);
+
+final String baseUrl = 'http://192.168.122.1:8080/transactions';
+
 // Retorna todas as transações
 Future<List<Transaction>> findAll() async {
-  final http.Client client = HttpClientWithInterceptor.build(
-    interceptors: [LoggingInterceptor()],
-  );
-
-  final http.Response response = await client
-      .get('http://192.168.122.1:8080/transactions')
-      .timeout(Duration(seconds: 5));
+  final http.Response response =
+      await client.get(baseUrl).timeout(Duration(seconds: 5));
   final List<dynamic> decodedJson = jsonDecode(response.body);
   final List<Transaction> transactions = List();
 
@@ -50,4 +51,39 @@ Future<List<Transaction>> findAll() async {
   }
 
   return transactions;
+}
+
+// Cria uma nova transação
+Future<Transaction> save(Transaction transaction) async {
+  // Transforma a transação em um Map
+  final Map<String, dynamic> transactionMap = {
+    'value': transaction.value,
+    'contact': {
+      'name': transaction.contact.fullName,
+      'accountNumber': transaction.contact.accountNumber,
+    }
+  };
+
+  // Transforma o Map em uma String JSON
+  final String transactionJson = jsonEncode(transactionMap);
+
+  // POST para criação de uma transação
+  final http.Response response = await client.post(baseUrl,
+      headers: {
+        'Content-type': 'application/json',
+        'password': '1000',
+      },
+      body: transactionJson);
+
+  // Retorna um Object JSON
+  Map<String, dynamic> newTransactionJson = jsonDecode(response.body);
+  final Map<String, dynamic> contactJson = newTransactionJson['contact'];
+  return Transaction(
+    newTransactionJson['value'],
+    Contact(
+      0,
+      contactJson['name'],
+      contactJson['accountNumber'],
+    ),
+  );
 }
